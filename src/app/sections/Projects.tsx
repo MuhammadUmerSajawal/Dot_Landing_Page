@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FadeIn } from "@/components/animation/FadeIn";
 import { ProjectCard } from "@/components/shared/ProjectCard";
 import { SectionTitle } from "@/components/shared/SectionTitle";
-import { projects } from "@/lib/constants";
+import { products } from "@/config/site";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,9 +40,9 @@ export function Projects() {
 
   return (
     <section id="products" ref={sectionRef} className="section-padding">
-      <SectionTitle number="02" label="-- PRODUCTS" title="Our SaaS Platforms" />
+      <SectionTitle number="02" label="PRODUCTS" title="Our SaaS Platforms" />
       <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {projects.map((project, index) => (
+        {products.map((project, index) => (
           <FadeIn key={project.name} delay={index * 0.1}>
             <ProjectCard project={project} />
           </FadeIn>
@@ -51,5 +51,3 @@ export function Projects() {
     </section>
   );
 }
-
-

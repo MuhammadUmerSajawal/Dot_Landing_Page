@@ -1,9 +1,9 @@
 "use client";
 
-import type { Project } from "@/types";
+import type { Product } from "@/types";
 
 interface ProjectCardProps {
-  project: Project;
+  project: Product;
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {

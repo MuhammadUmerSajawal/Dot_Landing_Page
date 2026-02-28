@@ -4,7 +4,7 @@ import { Github, Linkedin, Twitter, type LucideIcon } from "lucide-react";
 import { FadeIn } from "@/components/animation/FadeIn";
 import { ContactForm } from "@/components/shared/ContactForm";
 import { SectionTitle } from "@/components/shared/SectionTitle";
-import { socialLinks } from "@/lib/constants";
+import { contactDetails, socialLinks } from "@/config/site";
 
 const iconMap: Record<string, LucideIcon> = {
   X: Twitter,
@@ -15,21 +15,23 @@ const iconMap: Record<string, LucideIcon> = {
 export function Contact() {
   return (
     <section id="contact" className="section-padding pb-16">
-      <SectionTitle number="03" label="-- CONTACT" title="Let\'s Build Together" />
+      <SectionTitle number="03" label="CONTACT" title="Let's Build Together" />
       <div className="mt-10 grid gap-10 lg:grid-cols-2">
         <FadeIn className="space-y-8">
-          <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-textTertiary">Address</p>
-            <p className="mt-2 text-lg text-textPrimary">[Your Address]</p>
-          </div>
-          <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-textTertiary">Phone</p>
-            <p className="mt-2 text-lg text-textPrimary">[Phone Number]</p>
-          </div>
-          <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-textTertiary">Email</p>
-            <p className="mt-2 text-lg text-textPrimary">hello@dot.ai</p>
-          </div>
+          {contactDetails.map((detail) => (
+            <div key={detail.label}>
+              <p className="text-sm uppercase tracking-[0.2em] text-textTertiary">
+                {detail.label}
+              </p>
+              {detail.href ? (
+                <a href={detail.href} className="mt-2 inline-block text-lg text-textPrimary">
+                  {detail.value}
+                </a>
+              ) : (
+                <p className="mt-2 text-lg text-textPrimary">{detail.value}</p>
+              )}
+            </div>
+          ))}
         </FadeIn>
         <FadeIn delay={0.1}>
           <ContactForm />
@@ -61,5 +63,3 @@ export function Contact() {
     </section>
   );
 }
-
-

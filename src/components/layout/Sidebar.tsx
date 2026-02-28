@@ -1,12 +1,7 @@
 "use client";
 
 import Link from "next/link";
-
-const navItems = [
-  { label: "ABOUT", href: "#about" },
-  { label: "PRODUCTS", href: "#products" },
-  { label: "CONTACT", href: "#contact" },
-];
+import { navItems, siteConfig } from "@/config/site";
 
 export function Sidebar() {
   return (
@@ -16,7 +11,7 @@ export function Sidebar() {
           href="#hero"
           className="shrink-0 bg-gradient-to-r from-accent via-textPrimary to-accent bg-clip-text text-xl font-semibold tracking-tight text-transparent md:text-2xl"
         >
-          .dot
+          {siteConfig.name}
         </Link>
         <nav className="flex min-w-0 flex-1 items-center gap-4 overflow-x-auto whitespace-nowrap text-[11px] uppercase tracking-[0.2em] text-textSecondary md:justify-end md:gap-6 md:text-xs">
           {navItems.map((item) => (

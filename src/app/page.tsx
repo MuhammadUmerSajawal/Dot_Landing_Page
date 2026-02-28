@@ -16,8 +16,8 @@ export default function Home() {
         <Sidebar />
         <main className="pt-16 md:pt-20">
           <Hero />
-          <Projects />
           <About />
+          <Projects />
           <Contact />
         </main>
       </div>

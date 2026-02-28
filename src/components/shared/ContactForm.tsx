@@ -14,11 +14,36 @@ export function ContactForm() {
     setIsSubmitting(true);
     setStatus(null);
 
-    await new Promise((resolve) => setTimeout(resolve, 600));
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
-    event.currentTarget.reset();
-    setStatus("Message captured. Connect your backend endpoint when ready.");
-    setIsSubmitting(false);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          message: formData.get("message"),
+        }),
+      });
+
+      if (!response.ok) {
+        const data = (await response.json()) as { message?: string };
+        throw new Error(data.message ?? "Unable to send your message.");
+      }
+
+      form.reset();
+      setStatus("Message sent. We will get back to you soon.");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Something went wrong. Please try again.";
+      setStatus(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
